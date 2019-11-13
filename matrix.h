@@ -42,6 +42,40 @@ public:
         for(unsigned i = 0; i<columns; i++) vectorX.push_back(new SparseMatrix<T>);
     }
 
+    Matrix(const Matrix<T>& other) {
+        this->rows = other.rows;
+        this->columns = other.columns;
+        for(unsigned i = 0; i<rows; i++) vectorY.push_back(new SparseMatrix<T>);
+        for(unsigned i = 0; i<columns; i++) vectorX.push_back(new SparseMatrix<T>);
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < columns; ++j) {
+                Node<T> *node = other.findNode(i,j);
+                if (node) {
+                    this->set(i, j, node->Data);
+                }
+            }
+        }
+    }
+
+    Matrix operator=(const Matrix<T>& other) {
+        deleteRows();
+        vectorX.clear();
+        vectorY.clear();
+        this->rows = rows;
+        this->columns = columns;
+        for(unsigned i = 0; i<rows; i++) vectorY.push_back(new SparseMatrix<T>);
+        for(unsigned i = 0; i<columns; i++) vectorX.push_back(new SparseMatrix<T>);
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < columns; ++j) {
+                Node<T> *node = other.findNode(i,j);
+                if (node) {
+                    this->set(i, j, node->Data);
+                }
+            }
+        }
+        return *this;
+    }
+
     void set(unsigned row, unsigned column, T Data){
         if (row > rows or column > columns or row < 0 or column < 0)
             throw invalid_argument("Index out of range");
@@ -162,7 +196,7 @@ public:
     }
 
     //Memory lost
-   Matrix<T> operator+(Matrix<T>& other) const{
+   Matrix<T> operator+(const Matrix<T>& other) const{
         if(rows!=other.rows or columns!=other.columns) throw invalid_argument("Can not be solved");
         Matrix<T> temp (rows, columns);
         for(int i=0; i<rows; ++i) {
@@ -250,6 +284,8 @@ public:
 
     ~Matrix(){
         deleteRows();
+        vectorX.clear();
+        vectorY.clear();
     }
 };
 #endif //SPARSE_MATRIX_MATRIX_H

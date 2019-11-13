@@ -3,7 +3,7 @@
 
 
 int main() {
-    //Tester::execute();
+    Tester::execute();
     Matrix<int> m(2, 2);
     m.set(0, 0, 7);
     m.set(0, 1, 2);
@@ -28,6 +28,7 @@ int main() {
     cout<<'\n';
     const auto& m7=m6;
     m7.print();
+
     return EXIT_SUCCESS;
 }
 

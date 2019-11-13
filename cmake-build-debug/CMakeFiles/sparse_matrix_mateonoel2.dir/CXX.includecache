@@ -7,12 +7,10 @@
 #IncludeRegexTransform: 
 
 /Users/m.noel/Desktop/sparse-matrix-mateonoel2/main.cpp
-iostream
--
 tester/tester.h
 /Users/m.noel/Desktop/sparse-matrix-mateonoel2/tester/tester.h
-matrix.h
-/Users/m.noel/Desktop/sparse-matrix-mateonoel2/matrix.h
+iostream
+-
 
 /Users/m.noel/Desktop/sparse-matrix-mateonoel2/matrix.h
 stdexcept
@@ -31,10 +29,6 @@ type_traits
 -
 
 /Users/m.noel/Desktop/sparse-matrix-mateonoel2/node.h
-
-/Users/m.noel/Desktop/sparse-matrix-mateonoel2/tester/tester.cpp
-tester.h
-/Users/m.noel/Desktop/sparse-matrix-mateonoel2/tester/tester.h
 
 /Users/m.noel/Desktop/sparse-matrix-mateonoel2/tester/tester.h
 stdexcept

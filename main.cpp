@@ -1,10 +1,9 @@
-#include <iostream>
 #include "tester/tester.h"
-#include "matrix.h"
+#include <iostream>
 
 
 int main() {
-    Tester::execute();
+    //Tester::execute();
     Matrix<int> m(2, 2);
     m.set(0, 0, 7);
     m.set(0, 1, 2);
@@ -26,6 +25,9 @@ int main() {
     cout<<'\n';
     auto m6 = m5.transpose();
     m6.print();
+    cout<<'\n';
+    const auto& m7=m6;
+    m7.print();
     return EXIT_SUCCESS;
 }
 

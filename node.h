@@ -11,10 +11,7 @@ protected:
     int posX{}, posY{};
     T Data;
 public:
-    explicit Node(){
-        next = nullptr;
-        down = nullptr;
-    }
+    explicit Node(): next(nullptr), down(nullptr){}
     ~ Node(){
         next = nullptr;
         down = nullptr;
@@ -27,9 +24,7 @@ class SparseMatrix {
 private:
     Node<T>* target;
 public:
-    explicit SparseMatrix(){
-        target = nullptr;
-    }
+    explicit SparseMatrix():target(nullptr){}
     ~ SparseMatrix(){
         target = nullptr;
     }

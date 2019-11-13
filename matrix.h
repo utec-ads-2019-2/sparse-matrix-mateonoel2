@@ -10,10 +10,9 @@ using namespace std;
 template <typename T>
 class Matrix {
 private:
-    Node<T> * root;
     vector<SparseMatrix<T>*> vectorX;
     vector<SparseMatrix<T>*> vectorY;
-    unsigned rows{}, columns{};
+    unsigned rows, columns;
 
     Node<T>* findNode(unsigned row,unsigned column) const{
         if (row > rows or column > columns)
@@ -38,15 +37,9 @@ private:
         }
     }
 public:
-    Matrix(unsigned rows, unsigned columns){
-        this->rows = rows;
-        this->columns = columns;
-        for(unsigned i = 0; i<rows; i++){
-            vectorY.push_back(new SparseMatrix<T>);
-        }
-        for(unsigned i = 0; i<columns; i++){
-            vectorX.push_back(new SparseMatrix<T>);
-        }
+    Matrix(unsigned rows, unsigned columns): rows(rows), columns(columns){
+        for(unsigned i = 0; i<rows; i++) vectorY.push_back(new SparseMatrix<T>);
+        for(unsigned i = 0; i<columns; i++) vectorX.push_back(new SparseMatrix<T>);
     }
 
     void set(unsigned row, unsigned column, T Data){
@@ -133,7 +126,7 @@ public:
         }
     }
 
-    T operator()(unsigned row, unsigned column){
+    T operator()(unsigned row, unsigned column) const{
         Node<T>* temp = findNode(row, column);
         if(temp) return temp->Data;
         else return 0;
@@ -153,9 +146,9 @@ public:
     }
 
     //Memory lost
-    Matrix<T> operator*(Matrix<T> other) const{
+    Matrix<T> operator*(Matrix<T>& other) const{
         if(columns!=other.rows) throw invalid_argument("Can not be solved");
-        auto temp = new Matrix<T>(rows,other.columns);
+        auto temp = new Matrix<T>(rows, other.columns);
         for(int i=0; i<rows; ++i) {
             for (int j = 0; j < other.columns; ++j) {
                 T sum = 0;
@@ -168,8 +161,8 @@ public:
         return *temp;
     }
 
-    //Memory lost?
-    Matrix<T> operator+(Matrix<T> other) const{
+    //Memory lost
+   Matrix<T> operator+(Matrix<T>& other) const{
         if(rows!=other.rows or columns!=other.columns) throw invalid_argument("Can not be solved");
         Matrix<T> temp (rows, columns);
         for(int i=0; i<rows; ++i) {
@@ -194,8 +187,8 @@ public:
         return temp;
     }
 
-    //Memory lost?
-    Matrix<T> operator-(Matrix<T> other) const{
+    //Memory lost
+    Matrix<T> operator-(Matrix<T>& other) const{
         if(rows!=other.rows or columns!=other.columns) throw invalid_argument("Can not be solved");
         Matrix<T> temp (rows, columns);
         for(int i=0; i<rows; ++i) {
@@ -220,7 +213,6 @@ public:
         return temp;
     }
 
-    //Memory lost?
     Matrix<T> transpose() const{
         Matrix<T> temp (rows, columns);
         for(int i=0; i<rows; ++i) {
@@ -257,7 +249,7 @@ public:
     }
 
     ~Matrix(){
-        //deleteRows();
+        deleteRows();
     }
 };
 #endif //SPARSE_MATRIX_MATRIX_H

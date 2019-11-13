@@ -10,10 +10,10 @@ void Tester::execute() {
     }
 }
 
+
 template <typename T>
 void Tester::testMatrix(unsigned int rows, unsigned int columns) {
     Mocker mocker;
-
     T **matrix1 = buildMatrix<T>(rows, columns);
     Matrix<T> test1 = setMatrix<T>(matrix1, rows, columns);
 

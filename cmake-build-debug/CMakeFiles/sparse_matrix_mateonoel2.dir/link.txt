@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/sparse_matrix_mateonoel2.dir/mocker/mocker.cpp.o CMakeFiles/sparse_matrix_mateonoel2.dir/tester/tester.cpp.o CMakeFiles/sparse_matrix_mateonoel2.dir/main.cpp.o  -o sparse_matrix_mateonoel2 

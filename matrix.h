@@ -166,6 +166,8 @@ public:
         else return 0;
     }
 
+    // Utilizar set y find para las operaciones en vez de los punteros directamente, tiene un impacto sobre el performance
+
     Matrix<T> operator*(T scalar) const{
         Matrix<T> temp(rows,columns);
         if(scalar)
